@@ -10,7 +10,7 @@ class TransOpt:
     def __init__(self, data):
         self.data = data
     
-    def create_model(self, df_cases, time_horizon=21,start_day=120, n1=20000, n2=300, n3=100, n4=150):
+    def create_model(self, df_cases, time_horizon=28,start_day=120, n1=20000, n2=300, n3=100, n4=150):
         
         def haversine_np(lon1, lat1, lon2, lat2):
             """
@@ -187,4 +187,3 @@ if __name__ == '__main__':
     print([[trans_opt.model.cases_held[i, t].value for i in trans_opt.model.dcs] for t in trans_opt.model.t])
     print(trans_opt.model.demand_costs(), trans_opt.model.storage_costs(), trans_opt.model.production_costs(), trans_opt.model.dc_inter_costs(), trans_opt.model.difference_in_demand())
     print([[[m.cases_prod_dc[prod,dc,t].value for prod in trans_opt.model.production_nodes] for dc in m.dcs] for t in m.t])
-    print(m.pprint())

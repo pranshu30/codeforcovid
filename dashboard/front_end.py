@@ -278,10 +278,9 @@ def display_map(day, hover_data, figure, opt_data):
                         lat = [data.dc_geo.loc[dc,'latitude'], data.df_geo.loc[k,'latitude']],
                         lon=[data.dc_geo.loc[dc,'longitude'], data.df_geo.loc[k,'longitude']],
                         mode = 'lines',
-                        marker=go.scattermapbox.Marker(
-                            size=v,
-                            color='rgb(255,255,255)',
-                            opacity=0.2
+                        line=go.scattermapbox.Line(
+                            width=min(0.2, v**0.5),
+                            color='rgb(255,255,255)'
                         ),
                         text=None,
             ))
@@ -307,7 +306,7 @@ def display_map(day, hover_data, figure, opt_data):
         mode = 'markers',
         marker=go.scattermapbox.Marker(
             symbol='triangle',
-            size=20,
+            size=15,
             color='rgb(152,251,152)'
         ),
         text=[str(data.fips_to_pretty[dc]) + ' Distribution Center' for dc in data.dc_geo.index.values.tolist()],
@@ -432,3 +431,4 @@ def display_selected_data(selectedData, chart_dropdown, year, opt_data):
 
 if __name__ == "__main__":
     app1.run_server(debug=True)
+
